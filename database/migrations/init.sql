@@ -2,24 +2,22 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE users (
     id UUID NOT NULL DEFAULT uuid_generate_v4 (),
-    CONSTRAINT primary_key_user PRIMARY KEY ( id ),
-
     name TEXT,
-    telegramId int NOT NULL
+    telegram_id INT NOT NULL,
+
+    CONSTRAINT primary_key_user PRIMARY KEY ( id )
 );
 
 CREATE TABLE dates (
-    id uuid NOT NULL DEFAULT uuid_generate_v4 (),
-    CONSTRAINT primary_key_days PRIMARY KEY ( id ),
-
+    id UUID NOT NULL DEFAULT uuid_generate_v4 (),
     came TIMESTAMP NOT NULL DEFAULT NOW(),
     go TIMESTAMP,
-    workHours int NOT NULL DEFAULT 0,
-    userId UUID,
-    CONSTRAINT fk_users
-      FOREIGN KEY(userId) 
-	  REFERENCES users(id)
+    work_hours INT NOT NULL DEFAULT 0,
+    user_id UUID,
+
+    CONSTRAINT primary_key_days PRIMARY KEY ( id ),
+    CONSTRAINT fk_users FOREIGN KEY(user_id) REFERENCES users(id)
 );
 
 
-CREATE UNIQUE INDEX "user.telegramId_unique" ON "users"("telegramid");
+CREATE UNIQUE INDEX "user.telegramId_unique" ON "users"("telegram_id");

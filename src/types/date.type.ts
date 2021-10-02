@@ -3,4 +3,5 @@ export type WorkDate = {
   came?: Date;
   go?: Date;
   workHours: number;
+  userId?: string;
 };

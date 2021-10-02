@@ -7,7 +7,7 @@ export class UserController {
     try {
       let user = (
         await getConnection().query(
-          'SELECT * FROM "users" WHERE telegramid = $1',
+          'SELECT * FROM "users" WHERE telegram_id = $1',
           [dto.telegramId],
         )
       )[0];
@@ -21,7 +21,7 @@ export class UserController {
       if (!user) {
         user = (
           await getConnection().query(
-            `INSERT INTO users("telegramid" ${
+            `INSERT INTO users("telegram_id" ${
               dto.name ? ',"name"' : ''
             }) VALUES ($1 ${dto.name ? ',$2' : ''}) RETURNING *`,
             args,
