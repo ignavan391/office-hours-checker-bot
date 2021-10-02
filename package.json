@@ -16,7 +16,9 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "migrations": "chmod +x ./database/database.sh && ./database/database.sh",
-    "format": "prettier --write \"src/**/*.ts\""
+    "format": "prettier --write \"src/**/*.ts\"",
+    "build": "tsc",
+    "start:prod": "node ./dist/index.js"
   },
   "repository": {
     "type": "git",
