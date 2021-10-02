@@ -18,7 +18,11 @@ export class HelpController {
       name: ctx.from.username,
       telegramId: ctx.from.id,
     };
-    const user = await this.userController.findOrSaveUser(dto);
-    ctx.reply(`Welcome ${user.name}`);
+    try {
+      const user = await this.userController.findOrSaveUser(dto);
+      ctx.reply(`Welcome ${user.name}`);
+    } catch (e: any) {
+      ctx.reply(e);
+    }
   }
 }
