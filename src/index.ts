@@ -15,8 +15,9 @@ import { createOrmConnection } from './database';
   bot.hears(/get\s(\d{2})\/((\d{2})|(\d{1}))/, (ctx) =>
     dayController.getDay(ctx),
   );
+
+  bot.hears(/set\s(\d{2})\/((\d{2})|(\d{1}))\s(10|11|12|[1-9]):([0-5][0-9])$/, (ctx)=> dayController.setDay(ctx))
   // bot.command('show_all_info'
   //   bot.hears(/set\s(\d{2})\/((\d{2})|(\d{1}))\s(10|11|12|[1-9]):([0-5][0-9])$/, (ctx)=> {ctx.match[0]})
-  // bot.hears(/get\s(\d{2})\/((\d{2})|(\d{1}))/,day)
   bot.launch();
 })();

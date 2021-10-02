@@ -10,7 +10,7 @@ CREATE TABLE users (
 
 CREATE TABLE dates (
     id UUID NOT NULL DEFAULT uuid_generate_v4 (),
-    came TIMESTAMP NOT NULL DEFAULT NOW(),
+    came TIMESTAMP,
     go TIMESTAMP,
     work_hours INT NOT NULL DEFAULT 0,
     user_id UUID,
