@@ -2,52 +2,40 @@ import moment from 'moment';
 import { getConnection } from 'typeorm';
 import { Ctx } from '../types/ctx.type';
 import { WorkDate } from '../types/date.type';
-import { UserDto } from '../types/user.type';
-import { UserController } from './user.controller';
 
 export class DayController {
-  private userController: UserController;
 
-  constructor() {
-    this.userController = new UserController();
-  }
   async getDay(ctx: Ctx) {
     const dayDto =
       ctx.match[1] + '/' + ctx.match[2] + '/' + moment().year().toString();
 
-    const date = moment(dayDto).toISOString();
-    const day: WorkDate = (
+    const date = moment(dayDto)
+    const day:WorkDate = (
       await getConnection().query(
-        'SELECT dates.* FROM "dates" WHERE "dates"."came"::date = $1',
-        [date],
+        'SELECT dates.* FROM "dates" WHERE "dates"."came"::date =$1 AND "dates"."user_id" = $2',
+        [date.toISOString(),ctx.user.id],
       )
     )[0];
 
     if (day) {
-      ctx.reply(`date: ${date} \n time: ${day.workHours}`);
+      ctx.reply(`[Year]: ${date.year()}\n[Date]: ${date.format('MM/DD')} \n[Time]: ${day.work_hours}`);
     } else {
-      ctx.reply('Нет информации');
+      ctx.reply('[Info] Нет информации');
     }
   }
 
   async setDay(ctx: Ctx) {
-    if (!ctx.from) {
-      ctx.reply('Информация о получателе не найдена');
-      return;
-    }
-    const userDto: UserDto = {
-      name: ctx.from.username,
-      telegramId: ctx.from.id,
-    };
     const dayDto =
       ctx.match[1] + '/' + ctx.match[2] + '/' + moment().year().toString();
     const workHours = ctx.match[5];
 
+    const user = ctx.user
+
     const date = moment(dayDto).toISOString();
-    let day = (
+    let day: WorkDate = (
       await getConnection().query(
-        'SELECT dates.* FROM "dates" WHERE "dates"."came"::date = $1',
-        [date],
+        'SELECT dates.* FROM "dates" WHERE "dates"."came"::date = $1 AND "dates"."user_id" = $2',
+        [date,ctx.user.id],
       )
     )[0];
 
@@ -59,7 +47,6 @@ export class DayController {
         )
       )[0][0];
     } else {
-      const user = await this.userController.findOrSaveUser(userDto);
       const args = [user.id, workHours, date];
 
       day = (
@@ -69,6 +56,6 @@ export class DayController {
         )
       )[0];
     }
-    ctx.reply(day.work_hours.toString());
+    ctx.reply(`[Time]: ${day.work_hours}`);
   }
 }

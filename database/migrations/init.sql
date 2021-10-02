@@ -1,6 +1,6 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id UUID NOT NULL DEFAULT uuid_generate_v4 (),
     name TEXT,
     telegram_id INT NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE users (
     CONSTRAINT primary_key_user PRIMARY KEY ( id )
 );
 
-CREATE TABLE dates (
+CREATE TABLE IF NOT EXISTS dates (
     id UUID NOT NULL DEFAULT uuid_generate_v4 (),
     came TIMESTAMP,
     go TIMESTAMP,

@@ -2,6 +2,6 @@ export type WorkDate = {
   id: string;
   came?: Date;
   go?: Date;
-  workHours: number;
-  userId?: string;
+  work_hours: number;
+  user_id?: string;
 };
