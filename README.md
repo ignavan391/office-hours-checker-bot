@@ -1,7 +1,5 @@
 # office-hours-checker-bot
 ---------
-![illustration](https://news.noteru.com/wp-content/uploads/2020/07/08/boty-min.png)
-
 just a telegram bot to monitor the number of hours worked
 
 ## How to use ? 
@@ -50,10 +48,10 @@ time: 8:30
 1. clone this repo
 2. start : 
 ```bash
+$ yarn
+$ yarn migrations
 $ docker-compose up
-$ prisma migrate dev --name init
-$ pnpm install
-$ pnpm run start
+$ yarn start
 ```
 
 

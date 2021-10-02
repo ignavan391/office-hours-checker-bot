@@ -1,9 +1,29 @@
-import { PrismaClient } from "@prisma/client"
+import dotenv from 'dotenv';
+dotenv.config();
 
-require('dotenv').config()
+export type DatabaseConfig = {
+  user: string;
+  password: string;
+  name: string;
+  port: number;
+};
 
-export const botToken:string = process.env.BOT_TOKEN || ""
+export type Config = {
+  botToken: string;
+  database: DatabaseConfig;
+};
 
-const prisma = new PrismaClient()
+function initConfig(): Config {
+  return {
+    botToken: process.env.BOT_TOKEN || '',
+    database: {
+      user: process.env.DATABASE_USER || '',
+      password: process.env.DATABASE_PASS || '',
+      name: process.env.DATABASE_NAME || '',
+      port: Number.parseInt(process.env.DATABASE_PORT ?? '') || 5432,
+    },
+  };
+}
 
-export {prisma}
+const config = initConfig();
+export default config;
