@@ -6,7 +6,7 @@ volumes:
 services:
   postgres:
     container_name: postgres_ofhc_bot
-    image: postgres:11.6-alpine
+    image: postgres:11.13-alpine
     command:
       - "postgres"
       - "-c"
