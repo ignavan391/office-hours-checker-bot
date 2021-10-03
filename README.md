@@ -32,6 +32,19 @@ Result:
 [Time 🕔]: 8
 ```
 
+```javascript
+/show_all_info
+```
+
+```javascript
+02/04 | 6
+02/07 | 7
+02/08 | 0.25
+02/16 | 15
+02/17 | 15.0167
+03/04 | 6.25
+```
+
 ## For contributors : 
 
 ### How to start : 
