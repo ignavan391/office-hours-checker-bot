@@ -18,7 +18,7 @@ export class DayController {
     )[0];
 
     if (day) {
-      ctx.reply(`[Year]: ${date.year()}\n[Date]: ${date.format('MM/DD')} \n[Time 🕔]: ${day.work_hours}`);
+      ctx.reply(`[Year]: ${date.year()}\n[Date]: ${date.format('MM/DD')} \n[Time 🕔]: ${(day.work_hours.toFixed(2))}`);
     } else {
       ctx.reply('[Info] Нет информации');
     }
@@ -27,7 +27,17 @@ export class DayController {
   async setDay(ctx: Ctx) {
     const dayDto =
       ctx.match[1] + '/' + ctx.match[2] + '/' + moment().year().toString();
-    const workHours = ctx.match[5];
+    let workHours: string
+    const workTimeDto = ctx.match[5];
+    if(workTimeDto?.includes('m')){
+      workHours = (Number.parseInt(workTimeDto.split('m')[0]) / 60).toString();
+    }
+    else if(workTimeDto?.includes('h')){
+      workHours = workTimeDto.split('h')[0]
+    }
+    else {
+      workHours = workTimeDto
+    }
 
     const user = ctx.user
 
@@ -60,6 +70,6 @@ export class DayController {
         )
       )[0];
     }
-    ctx.reply(`[Time 🕔]: ${day.work_hours}`);
+    ctx.reply(`[Time 🕔]: ${day.work_hours.toFixed(2)}`);
   }
 }

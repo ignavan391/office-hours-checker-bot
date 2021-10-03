@@ -910,6 +910,13 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
+telegraf-inline-menu@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/telegraf-inline-menu/-/telegraf-inline-menu-6.3.0.tgz#e9cedb2086f482e9d95e3f03def6895cd69928ff"
+  integrity sha512-5n2mV8BS1mRGminS6nfQblfrNINBgFrWpyWre0GXtAjLhj2rG8ERynGysQ7oOh7pSWrewQz8AeAU/NVRCXwfDw==
+  dependencies:
+    typegram "^3.0.2"
+
 telegraf@^4.3.0:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-4.4.2.tgz#dd1b99a50593de303c8f47bbe98201a93a125f31"
@@ -980,7 +987,7 @@ tsutils@^3.21.0:
   dependencies:
     tslib "^1.8.1"
 
-typegram@^3.4.2:
+typegram@^3.0.2, typegram@^3.4.2:
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/typegram/-/typegram-3.4.3.tgz#a1e212beaf6b43079a3774457b40d6eab1a93acf"
   integrity sha512-pH0TQJzCWM2+7y6yiBoQVNt7PO9ZvAu/lQukVx4sm68FIBBZEBWI+2MzuMcdbwrD5mD5NrEMAyml9N6DupUZag==

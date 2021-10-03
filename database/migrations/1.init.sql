@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS dates (
     id UUID NOT NULL DEFAULT uuid_generate_v4 (),
     came TIMESTAMP,
     go TIMESTAMP,
-    work_hours INT NOT NULL DEFAULT 0,
+    work_hours REAL NOT NULL DEFAULT 0,
     user_id UUID,
 
     CONSTRAINT primary_key_days PRIMARY KEY ( id ),

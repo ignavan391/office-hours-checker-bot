@@ -21,7 +21,7 @@ Write a message to the bot **@officeHoursCheckerBot**
 ## Example :
 
 ```javascript
-set 02/01 8:00
+set 02/01 8h
 get 02/01
 ```
 
@@ -30,17 +30,6 @@ Result:
 [Year]: 2021
 [Date]: 02/01 
 [Time 🕔]: 8
-```
-```javascript
-set 02/01 8:30
-get 02/01
-```
-
-Result:
-```
-[Year]: 2021
-[Date]: 02/01 
-[Time 🕔]: 8:30
 ```
 
 ## For contributors : 
