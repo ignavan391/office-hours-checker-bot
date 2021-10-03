@@ -18,7 +18,7 @@ export class DayController {
     )[0];
 
     if (day) {
-      ctx.reply(`[Year]: ${date.year()}\n[Date]: ${date.format('MM/DD')} \n[Time]: ${day.work_hours}`);
+      ctx.reply(`[Year]: ${date.year()}\n[Date]: ${date.format('MM/DD')} \n[Time 🕔]: ${day.work_hours}`);
     } else {
       ctx.reply('[Info] Нет информации');
     }
@@ -41,9 +41,13 @@ export class DayController {
 
     if (day) {
       day = (
-        await getConnection().query(
-          `UPDATE dates SET work_hours = work_hours + $1 WHERE dates."came"::date = $2 RETURNING *`,
-          [workHours, date],
+        await getConnection().query(`
+          UPDATE dates SET work_hours = CASE 
+            WHEN work_hours + $1 > 24 THEN 24
+            ELSE work_hours + $1 
+          END
+          WHERE dates."came"::date = $2 AND "user_id" = $3 RETURNING *`,
+          [workHours, date,user.id],
         )
       )[0][0];
     } else {
@@ -56,6 +60,6 @@ export class DayController {
         )
       )[0];
     }
-    ctx.reply(`[Time]: ${day.work_hours}`);
+    ctx.reply(`[Time 🕔]: ${day.work_hours}`);
   }
 }

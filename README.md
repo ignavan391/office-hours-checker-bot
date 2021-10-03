@@ -21,14 +21,15 @@ Write a message to the bot **@officeHoursCheckerBot**
 ## Example :
 
 ```javascript
-set 02/01 8
+set 02/01 8:00
 get 02/01
 ```
 
 Result:
 ```
-date: 2021/2/1 
-time: 8:00
+[Year]: 2021
+[Date]: 02/01 
+[Time 🕔]: 8
 ```
 ```javascript
 set 02/01 8:30
@@ -37,8 +38,9 @@ get 02/01
 
 Result:
 ```
-date: 2021/2/1 
-time: 8:30
+[Year]: 2021
+[Date]: 02/01 
+[Time 🕔]: 8:30
 ```
 
 ## For contributors : 
