@@ -1,3 +1,4 @@
 DROP INDEX IF EXISTS "user.telegramId_unique";
 DROP TABLE IF EXISTS "users" CASCADE;
 DROP TABLE IF EXISTS "dates";
+DROP EXTENSION IF EXISTS "uuid-ossp";
