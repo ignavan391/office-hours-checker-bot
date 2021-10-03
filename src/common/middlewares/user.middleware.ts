@@ -1,6 +1,7 @@
 import { getConnection } from 'typeorm';
 import { UserContext } from '../../types/ctx.type';
 import { UserDto } from '../../types/user.type';
+import logger from '../logger';
 
 export const UserMiddleware = async (
   ctx: UserContext,
@@ -8,6 +9,10 @@ export const UserMiddleware = async (
 ) => {
   if (!ctx.from) {
     ctx.reply('Информация о получателе не найдена');
+    logger.log({
+      level: 'error',
+      message: 'incorrect time'
+    })
     return;
   }
   try {
@@ -41,7 +46,11 @@ export const UserMiddleware = async (
 
     ctx.user = user;
     return next();
-  } catch (e){
+  } catch (e: any){
+    logger.log({
+      level: 'error',
+      message: e
+    })
     throw e;
   }
 };

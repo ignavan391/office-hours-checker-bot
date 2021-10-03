@@ -1,6 +1,8 @@
 import moment from 'moment';
+import { Context } from 'telegraf';
 import { getConnection } from 'typeorm';
-import { Ctx } from '../types/ctx.type';
+import logger from '../common/logger';
+import { Ctx, UserContext } from '../types/ctx.type';
 import { WorkDate } from '../types/date.type';
 
 export class DayController {
@@ -29,6 +31,15 @@ export class DayController {
       ctx.match[1] + '/' + ctx.match[2] + '/' + moment().year().toString();
     let workHours: string
     const workTimeDto = ctx.match[5];
+
+    if(!workTimeDto){
+      logger.log({
+        level: 'error',
+        message: 'incorrect time'
+      })
+      ctx.reply('[Info] Некорректные данные')
+      return;
+    }
     if(workTimeDto?.includes('m')){
       workHours = (Number.parseInt(workTimeDto.split('m')[0]) / 60).toString();
     }
@@ -71,5 +82,16 @@ export class DayController {
       )[0];
     }
     ctx.reply(`[Time 🕔]: ${day.work_hours.toFixed(2)}`);
+  }
+
+  async getLastDates(ctx: UserContext){
+    const dates:WorkDate[] = 
+      await getConnection().query(
+        'SELECT * FROM "dates" WHERE "dates"."user_id" = $1 ORDER BY "dates"."came" LIMIT 30',
+        [ctx.user.id],
+      );
+
+    const result = dates.map(item => `${moment(item.came).format('MM/DD')} | ${item.work_hours}\n`).join('')
+    ctx.reply(result)
   }
 }
