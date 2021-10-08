@@ -24,7 +24,10 @@ export class ConfigService {
         user: this.getEnvironmentValueByKey('DATABASE_USER'),
         password: this.getEnvironmentValueByKey('DATABASE_PASS'),
         name: this.getEnvironmentValueByKey('DATABASE_NAME'),
-        host: process.env.NODE_ENV !== 'production' ? this.getEnvironmentValueByKey('DATABASE_HOST') : 'postgres_ofhc_bot',
+        host:
+          process.env.NODE_ENV !== 'production'
+            ? this.getEnvironmentValueByKey('DATABASE_HOST')
+            : 'postgres_ofhc_bot',
         port:
           Number.parseInt(this.getEnvironmentValueByKey('DATABASE_PORT')) ||
           5432,
