@@ -92,6 +92,10 @@ export class DayController {
       );
 
     const result = dates.map(item => `${moment(item.came).format('MM/DD')} | ${item.work_hours}\n`).join('')
+    if(result.length < 1){
+      ctx.reply(`ooops информация не найдена :(`);
+      return;
+    }
     ctx.reply(result)
   }
 }
