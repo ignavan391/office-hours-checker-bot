@@ -11,8 +11,8 @@ export const UserMiddleware = async (
     ctx.reply('Информация о получателе не найдена');
     logger.log({
       level: 'error',
-      message: 'incorrect time'
-    })
+      message: 'incorrect time',
+    });
     return;
   }
   try {
@@ -46,11 +46,11 @@ export const UserMiddleware = async (
 
     ctx.user = user;
     return next();
-  } catch (e: any){
+  } catch (e: any) {
     logger.log({
       level: 'error',
-      message: e
-    })
+      message: e,
+    });
     throw e;
   }
 };

@@ -1,7 +1,6 @@
 import { Ctx } from '../types/ctx.type';
 
 export class HelpController {
-
   async start(ctx: Ctx): Promise<void> {
     try {
       const user = ctx.user;

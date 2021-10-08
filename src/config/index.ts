@@ -21,11 +21,13 @@ export class ConfigService {
       botToken: this.getEnvironmentValueByKey('BOT_TOKEN'),
       database: {
         user: this.getEnvironmentValueByKey('DATABASE_USER'),
-        password:this.getEnvironmentValueByKey('DATABASE_PASS'),
+        password: this.getEnvironmentValueByKey('DATABASE_PASS'),
         name: this.getEnvironmentValueByKey('DATABASE_NAME'),
-        port: Number.parseInt(this.getEnvironmentValueByKey('DATABASE_PORT')) || 5432,
-      }
-    }
+        port:
+          Number.parseInt(this.getEnvironmentValueByKey('DATABASE_PORT')) ||
+          5432,
+      },
+    };
   }
 
   private getEnvironmentValueByKey(key: string): string {
