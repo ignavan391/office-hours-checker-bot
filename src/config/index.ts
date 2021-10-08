@@ -6,6 +6,7 @@ export type DatabaseConfig = {
   password: string;
   name: string;
   port: number;
+  host: string;
 };
 
 export type Config = {
@@ -23,6 +24,7 @@ export class ConfigService {
         user: this.getEnvironmentValueByKey('DATABASE_USER'),
         password: this.getEnvironmentValueByKey('DATABASE_PASS'),
         name: this.getEnvironmentValueByKey('DATABASE_NAME'),
+        host: process.env.NODE_ENV !== 'production' ? this.getEnvironmentValueByKey('DATABASE_HOST') : 'postgres_ofhc_bot',
         port:
           Number.parseInt(this.getEnvironmentValueByKey('DATABASE_PORT')) ||
           5432,
@@ -33,7 +35,7 @@ export class ConfigService {
   private getEnvironmentValueByKey(key: string): string {
     const value = process.env[key];
     if (!value) {
-      throw new Error('Invalid environment');
+      throw new Error(`Invalid environment ${key}`);
     }
 
     return value;

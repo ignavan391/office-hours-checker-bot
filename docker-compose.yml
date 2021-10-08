@@ -58,6 +58,8 @@ services:
           memory: 4G
 
   ofhc-bot:
+    depends_on:
+      - postgres
     image: ofhc-bot 
     build:
       target: builder
@@ -65,3 +67,9 @@ services:
     ports:
      - 80:8080
     command: yarn start:prod
+
+networks: 
+  default:
+    name: ofhc-bot
+    driver: bridge
+  

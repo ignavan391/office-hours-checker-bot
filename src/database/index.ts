@@ -5,7 +5,7 @@ export const createOrmConnection = async () => {
   const { database } = config;
   return await createConnection({
     type: 'postgres',
-    host: 'localhost',
+    host: database.host,
     port: database.port,
     username: database.user,
     password: database.password,
