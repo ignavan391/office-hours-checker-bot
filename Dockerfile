@@ -27,4 +27,4 @@ RUN NODE_ENV=production
 RUN yarn 
 
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/.env .env
+# COPY --from=builder /app/.env .env

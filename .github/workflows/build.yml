@@ -7,6 +7,12 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  DATABASE_USER: ${{ secrets.DATABASE_USER }}
+  DATABASE_PASS: ${{ secrets.DATABASE_PASS }}
+  DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+  DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+  DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+  BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
 
 jobs:
   build-and-push-image:
@@ -31,7 +37,7 @@ jobs:
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-
+          
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
