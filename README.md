@@ -41,7 +41,7 @@ Result:
 02/07 | 7
 02/08 | 0.25
 02/16 | 15
-02/17 | 15.0167
+02/17 | 15.01
 03/04 | 6.25
 ```
 
@@ -49,8 +49,13 @@ Result:
 
 ### How to start : 
 
+
 1. clone this repo
-2. start : 
+2. create env file:
+```bash
+$ echo "DATABASE_USER=example \nDATABASE_PASS=example \nDATABASE_NAME=example \nDATABASE_PORT=5432 \nDATABASE_HOST=localhost \nBOT_TOKEN=your_bot_token" > .env
+```
+3. start : 
 ```bash
 $ yarn
 $ yarn migrations
