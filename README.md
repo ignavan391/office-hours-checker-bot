@@ -83,6 +83,32 @@ CREATE TRIGGER
 Done in 0.24s.
 ```
 
+#### Project Structure: 
+
+* [database](https://github.com/kitt3911/office-hours-checker-bot/tree/master/database) - database staff : migrations, seeds, etc
+* --- [migrations](https://github.com/kitt3911/office-hours-checker-bot/tree/master/database/migrations)
+* ------ [1.timestamp.sql](https://github.com/kitt3911/office-hours-checker-bot/blob/master/database/migrations/1.timestamp.sql)
+
+A migration that creates a trigger to automatically update a field (updated_at):
+
+```sql
+CREATE OR REPLACE FUNCTION trigger_set_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+ALTER TABLE users ADD created_at TIMESTAMP NOT NULL DEFAULT NOW();
+ALTER TABLE users ADD updated_at TIMESTAMP NOT NULL DEFAULT NOW();
+
+CREATE TRIGGER  set_timestamp_to_user
+BEFORE UPDATE ON users
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+```
+
 
 ### How to participate in the project ?
 1. Create your feature branch (```git checkout -b my-new-feature```)
