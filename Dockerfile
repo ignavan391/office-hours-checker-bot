@@ -24,7 +24,9 @@ COPY --from=builder /app/package.json ./
 COPY --from=builder /app/yarn.lock ./
 
 RUN NODE_ENV=production
-RUN yarn 
+RUN yarn
 
 COPY --from=builder /app/dist ./dist
-# COPY --from=builder /app/.env .env
+COPY --from=builder /app/.env .env
+
+CMD ["yarn","start:prod"]

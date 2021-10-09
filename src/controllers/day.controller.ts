@@ -36,7 +36,7 @@ export class DayController {
     const workTimeDto = ctx.match[5];
 
     if (!workTimeDto) {
-      logger.log({
+      logger.error({
         level: 'error',
         message: 'incorrect time',
       });

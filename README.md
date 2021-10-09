@@ -54,7 +54,7 @@ Result:
 ```bash
 $ yarn
 $ yarn migrations
-$ docker build . -t ofhc-bot
+$ docker-compose build
 $ docker-compose up
 ```
 

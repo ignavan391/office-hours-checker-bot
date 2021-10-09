@@ -1,4 +1,5 @@
 import { Telegraf } from 'telegraf';
+import logger from '../common/logger';
 import { UserMiddleware } from '../common/middlewares/user.middleware';
 import config from '../config';
 import { DayController } from '../controllers/day.controller';
@@ -34,7 +35,10 @@ export class AppModule {
       this.dayController.setDay,
     );
     this.telegramApi.command('show_all_info', this.dayController.getLastDates);
-
+    logger.info({
+      level: 'info',
+      message: 'Initialization'
+    });
     this.telegramApi.launch();
   }
 }
