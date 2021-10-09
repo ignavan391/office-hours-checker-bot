@@ -1,4 +1,4 @@
-import winston, { transports } from 'winston';
+import winston, { format, transports } from 'winston';
 
 
 const logger = winston.createLogger({
@@ -14,7 +14,12 @@ const logger = winston.createLogger({
     warn: 8,
     error: 9
   },
-  format: winston.format.json(),
+  format: format.combine(
+    format.timestamp({
+      format: 'YYYY-MM-DD HH:mm:ss'
+    }),
+    format.json()
+),
   transports: [new transports.Console()]
 });
 export default logger;
