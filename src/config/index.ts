@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import logger from '../common/logger';
 dotenv.config();
 
 export type DatabaseConfig = {
@@ -38,6 +39,10 @@ export class ConfigService {
   private getEnvironmentValueByKey(key: string): string {
     const value = process.env[key];
     if (!value) {
+      logger.error({
+        level: 'error',
+        message: 'Invalid environment key'
+      })
       throw new Error(`Invalid environment ${key}`);
     }
 

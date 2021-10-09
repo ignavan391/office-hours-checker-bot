@@ -47,7 +47,7 @@ export const UserMiddleware = async (
     ctx.user = user;
     return next();
   } catch (e: any) {
-    logger.log({
+    logger.error({
       level: 'error',
       message: e,
     });
