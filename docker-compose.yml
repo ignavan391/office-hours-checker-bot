@@ -70,6 +70,7 @@ services:
           memory: 4G
 
   ofhc-bot:
+    container_name: ofhc_tg_bot
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -77,6 +78,7 @@ services:
         condition: service_healthy
     links:
       - rabbitmq
+      - postgres
     build: 
       context: .
       dockerfile: ./tg-bot/Dockerfile
