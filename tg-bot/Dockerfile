@@ -29,5 +29,3 @@ RUN yarn
 
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/.env .env
-
-CMD ["yarn","start:prod"]

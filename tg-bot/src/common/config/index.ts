@@ -10,9 +10,15 @@ export type DatabaseConfig = {
   host: string;
 };
 
+export type RabbitMQConfig = {
+  port: number;
+  host: string;
+}
+
 export type Config = {
   botToken: string;
   database: DatabaseConfig;
+  rabbitmq: RabbitMQConfig;
 };
 
 export class ConfigService {
@@ -33,6 +39,10 @@ export class ConfigService {
           Number.parseInt(this.getEnvironmentValueByKey('DATABASE_PORT')) ||
           5432,
       },
+      rabbitmq: {
+        host: this.getEnvironmentValueByKey('RABBIT_HOST'),
+        port: Number.parseInt(this.getEnvironmentValueByKey('RABBIT_PORT'))
+      }
     };
   }
 

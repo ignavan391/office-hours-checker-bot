@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "devDependencies": {
+    "@types/amqplib": "^0.8.2",
     "@types/datejs": "0.0.31",
     "@types/node": "14.14.37",
     "@typescript-eslint/eslint-plugin": "4.32.0",
@@ -33,6 +34,7 @@
   "homepage": "https://github.com/kitt3911/office-hours-checker-bot#readme",
   "dependencies": {
     "@prisma/client": "^2.19.0",
+    "amqplib": "^0.8.0",
     "datejs": "^1.0.0-rc3",
     "dotenv": "^8.2.0",
     "moment": "^2.29.1",

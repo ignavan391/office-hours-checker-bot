@@ -1,4 +1,8 @@
 import { AppModule } from './app';
 
-const app = new AppModule();
-app.init();
+try{
+    const app = new AppModule();
+    app.init();
+}catch(e){
+    process.exit(1);
+}

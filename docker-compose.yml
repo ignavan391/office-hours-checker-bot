@@ -4,14 +4,20 @@ volumes:
   pgadmin:
 
 services:
-
   rabbitmq:
+    container_name: rabbitmq_ofhc
     image: rabbitmq:3-management-alpine
-    networks:
-      default:
+    ports: 
+      - '5672:5672'
+      - '15672:15672'
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
 
   postgres:
-    container_name: postgres_ofhc_bot
+    container_name: postgres_ofhc
     image: postgres:11.13-alpine
     command:
       - 'postgres'
@@ -64,16 +70,17 @@ services:
           memory: 4G
 
   ofhc-bot:
-    init: true
     depends_on:
-      - postgres
+      rabbitmq:
+        condition: service_healthy
     links:
-      - "postgres"
+      - rabbitmq
     build: 
       context: .
       dockerfile: ./tg-bot/Dockerfile
     ports:
      - 80:8080
+    command: yarn start:prod
 
 networks: 
   default:
