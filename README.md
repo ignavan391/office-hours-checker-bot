@@ -57,10 +57,8 @@ $ echo "DATABASE_USER=example \nDATABASE_PASS=example \nDATABASE_NAME=example \n
 ```
 3. start : 
 ```bash
-$ yarn
-$ yarn migrations
-$ docker-compose build
-$ docker-compose up
+$ chmod +x ./database/database.sh && ./database/database.sh
+$ docker-compose up --build
 ```
 
 #### Expected result migrations:
