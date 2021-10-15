@@ -14,9 +14,9 @@
     "typescript": "4.2.4"
   },
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "migrations": "chmod +x ./database/database.sh && ./database/database.sh",
-    "migrations:rev": "chmod +x ./database/revert-database.sh && ./database/revert-database.sh",
+    "start": "ts-node index.ts",
+    "migrations": "chmod +x ../database/database.sh && ../database/database.sh",
+    "migrations:rev": "chmod +x ../database/revert-database.sh && ../database/revert-database.sh",
     "format": "prettier --write \"src/**/*.ts\"",
     "build": "tsc",
     "start:prod": "node ./dist/index.js"

@@ -1,11 +1,11 @@
 import { Telegraf } from 'telegraf';
-import logger from '../common/logger';
 import { UserMiddleware } from '../common/middlewares/user.middleware';
-import config from '../config';
 import { DayController } from '../controllers/day.controller';
 import { HelpController } from '../controllers/help.controller';
-import { createOrmConnection } from '../database';
 import { UserContext } from '../types/ctx.type';
+import config from '../common/config';
+import { createOrmConnection } from '../common/database';
+import logger from '../common/logger';
 
 export class AppModule {
   private telegramApi: Telegraf<UserContext>;

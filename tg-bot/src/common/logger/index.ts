@@ -1,6 +1,5 @@
 import winston, { format, transports } from 'winston';
 
-
 const logger = winston.createLogger({
   levels: {
     trace: 0,
