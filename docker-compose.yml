@@ -50,15 +50,15 @@ services:
       - '-c'
       - 'pg_stat_statements.track=all'
     environment:
-      POSTGRES_DB: ofhc-bot-db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: user
+      POSTGRES_DB: ${DATABASE_NAME:-ofhc-bot-db}
+      POSTGRES_USER: ${DATABASE_USER:-user}
+      POSTGRES_PASSWORD: ${DATABASE_PASS:-user}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - '5432:5432'
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U user -d ofhc-bot-db']
+      test: ['CMD-SHELL', 'pg_isready -U ${DATABASE_USER:-user} -d ${DATABASE_NAME:-ofhc-bot-db}']
       interval: 10s
       timeout: 5s
       retries: 5
