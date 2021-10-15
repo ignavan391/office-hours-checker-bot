@@ -1,1 +1,1 @@
-export const QueueDatesName = 'dates_svc'
+export const DatesApiQueueName = 'dates.to.api'

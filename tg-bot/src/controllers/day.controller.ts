@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { getConnection } from 'typeorm';
-import { QueueDatesName } from '../common/amqp/constants';
+import { DatesApiQueueName } from '../common/amqp/constants';
 import ampqConnection from '../common/amqp/transport';
 import logger from '../common/logger';
 import { Ctx, UserContext } from '../types/ctx.type';
@@ -84,7 +84,7 @@ export class DayController {
         )
       )[0];
     }
-    ampqConnection.getChannel().sendToQueue(QueueDatesName, Buffer.from(JSON.stringify(day)));
+    ampqConnection.getChannel().sendToQueue(DatesApiQueueName, Buffer.from(JSON.stringify(day)));
     ctx.reply(`[Time 🕔]: ${day.work_hours.toFixed(2)}`);
   }
 

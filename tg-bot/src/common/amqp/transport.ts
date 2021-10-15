@@ -1,7 +1,7 @@
 import * as amqp from 'amqplib';
 import config from '../config';
 import logger from '../logger';
-import { QueueDatesName } from './constants';
+import { DatesApiQueueName } from './constants';
 
 export class AMQPTransport {
   private connection!: amqp.Connection;
@@ -21,7 +21,7 @@ export class AMQPTransport {
     });
 
     const channel = await this.connection.createChannel();
-    channel.assertQueue(QueueDatesName);
+    channel.assertQueue(DatesApiQueueName);
   }
 
   getChannel() {
