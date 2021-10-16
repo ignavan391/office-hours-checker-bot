@@ -70,6 +70,16 @@ services:
           memory: 4G
 
   ofhc-bot:
+    environment: 
+      NODE_ENV: production
+      DATABASE_USER: ${DATABASE_USER:-ofhc-bot-db}
+      DATABASE_NAME: ${DATABASE_NAME:-user}
+      DATABASE_PASS: ${DATABASE_PASS:-user}
+      DATABASE_PORT: ${DATABASE_PORT:-5432}
+      BOT_TOKEN: ${BOT_TOKEN}
+      DATABASE_HOST: ${DATABASE_HOST:-postgres_ofhc}
+      RABBIT_HOST: ${RABBIT_HOST:-rabbitmq_ofhc}
+      RABBIT_PORT: ${RABBIT_PORT:-5672}
     container_name: ofhc_tg_bot
     depends_on:
       rabbitmq:
@@ -80,8 +90,8 @@ services:
       - rabbitmq
       - postgres
     build: 
-      context: .
-      dockerfile: ./tg-bot/Dockerfile
+      context: ./tg-bot
+      dockerfile: ./Dockerfile
     ports:
      - 80:8080
     command: yarn start:prod

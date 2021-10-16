@@ -2,12 +2,11 @@ FROM node:14.17-alpine as dev
 
 WORKDIR /app/
 
-COPY ./tg-bot/yarn.lock ./tg-bot/package.json ./
+COPY yarn.lock package.json ./
 
 RUN yarn 
 
-COPY ./tg-bot .
-COPY .env .env
+COPY . .
 
 FROM node:14.17-alpine as builder
 
@@ -28,4 +27,3 @@ RUN NODE_ENV=production
 RUN yarn
 
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/.env .env

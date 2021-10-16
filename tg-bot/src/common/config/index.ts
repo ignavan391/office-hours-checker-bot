@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import logger from '../logger';
-dotenv.config();
+// dotenv.config();
 
 export type DatabaseConfig = {
   user: string;
@@ -20,7 +20,6 @@ export type Config = {
   database: DatabaseConfig;
   rabbitmq: RabbitMQConfig;
 };
-
 export class ConfigService {
   private config: Config;
 
@@ -34,7 +33,7 @@ export class ConfigService {
         host:
           process.env.NODE_ENV !== 'production'
             ? this.getEnvironmentValueByKey('DATABASE_HOST')
-            : 'postgres_ofhc_bot',
+            : 'postgres_ofhc',
         port:
           Number.parseInt(this.getEnvironmentValueByKey('DATABASE_PORT')) ||
           5432,

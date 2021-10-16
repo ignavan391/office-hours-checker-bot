@@ -13,6 +13,8 @@ env:
   DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
   DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
   BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+  RABBIT_HOST: ${{ secrets.RABBIT_HOST }}
+  RABBIT_PORT: ${{ secrets.RABBIT_PORT }}
 
 jobs:
   build-and-push-image:
