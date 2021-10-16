@@ -20,8 +20,8 @@ export class AMQPTransport {
       throw new err();
     });
 
-    const channel = await this.connection.createChannel();
-    channel.assertQueue(DatesApiQueueName);
+    this.channel = await this.connection.createChannel();
+    this.channel.assertQueue(DatesApiQueueName);
   }
 
   getChannel() {
